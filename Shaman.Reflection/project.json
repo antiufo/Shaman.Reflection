@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0.9",
+  "authors": [
+    "Andrea Martinelli"
+  ],
+  "tags": [
+    "reflection",
+    "optimization",
+    "performance",
+    "invoke",
+    "expression"
+  ],
+  "compilationOptions": {
+    "keyFile": "ShamanOpenSourceKey.snk"
+  },
+  "compile": [],
+  "projectUrl": "http://shaman.io",
+  "iconUrl": "http://shaman.io/images/shaman-nuget-icon.png",
+  "description": "Creates fast, strongly typed delegates for accessing methods, fields and properties. The right overload is automatically chosen based on the type arguments of Func<> or Action<>.",
+  "frameworks": {
+    "net45": {},
+    "dotnet": {
+      "compilationOptions": {
+        "define": [
+          "CORECLR"
+        ]
+      },
+      "dependencies": {
+        "Microsoft.CSharp": "4.0.1-beta-23225",
+        "System.Collections": "4.0.11-beta-23225",
+        "System.Linq": "4.0.1-beta-23225",
+        "System.Runtime": "4.0.21-beta-23225",
+        "System.Threading": "4.0.11-beta-23225",
+        "System.Reflection": "4.1.0-beta-23225"
+      }
+    }
+  }
+}
