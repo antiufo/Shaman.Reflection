@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Shaman.Runtime
 {
-    public static class ReflectionHelper
+    public static partial class ReflectionHelper
     {
 
         public static object InitializeWrapper(Type wrapper, Assembly targetAssembly, string typeName)
@@ -183,13 +183,24 @@ namespace Shaman.Runtime
             return (TDelegate)GetWrapper(methodBase, typeof(TDelegate));
         }
 
+        public static TDelegate GetWrapper<TDelegate>(Assembly assembly, string typeName, string methodName)
+        {
+            return GetWrapper<TDelegate>(assembly, typeName, methodName, null);
+        }
 
-        public static TDelegate GetWrapper<TDelegate>(Assembly assembly, string typeName, string methodName, Type[] genericArguments = null)
+
+        public static TDelegate GetWrapper<TDelegate>(Assembly assembly, string typeName, string methodName, Type[] genericArguments)
         {
             return GetWrapper<TDelegate>(assembly.GetType(typeName, true, false), methodName, genericArguments);
         }
 
-        public static TDelegate GetWrapper<TDelegate>(Type wrappedType, string methodName, Type[] genericArguments = null)
+        public static TDelegate GetWrapper<TDelegate>(Type wrappedType, string methodName)
+        {
+            return GetWrapper<TDelegate>(wrappedType, methodName, null);
+            
+        }
+
+        public static TDelegate GetWrapper<TDelegate>(Type wrappedType, string methodName, Type[] genericArguments)
         {
             return (TDelegate)GetWrapper(wrappedType, methodName, typeof(TDelegate), null, genericArguments);
         }
