@@ -31,17 +31,17 @@ class ExampleWrapper
 
     static object _dummy = ReflectionHelper.InitializeWrapper(typeof(ExampleWrapper), typeof(Example));
 }
- ```
+```
 
 Additionally, you can directly use `ReflectionHelper.GetWrapper<>` methods for creating wrappers and storing them where you prefer.
 
- ## MakeGenericTypeFast, MakeGenericMethodFast
+## MakeGenericTypeFast, MakeGenericMethodFast
 Every time you call the ordinary `MakeGenericXx` methods, multiple objects are internally allocated (including the `params[] Type` array).
 
 After the initial instantiation of a generic type or method, subsequent calls are performed allocation-free.
 
- ```csharp
- using Shaman.Runtime;
+```csharp
+using Shaman.Runtime;
 
 // Fast generic type instantiation (no intermediate allocations)
 Type intType = typeof(int);
