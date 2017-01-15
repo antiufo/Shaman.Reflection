@@ -6,6 +6,7 @@ namespace Shaman.Runtime
 {
     public static partial class ReflectionHelper
     {
+#if false
         private struct MethodTypePair : IEquatable<MethodTypePair>
         {
             public MethodInfo GenericMethod;
@@ -59,15 +60,16 @@ namespace Shaman.Runtime
                 return GenericType.GetHashCode() ^ TypeArgument.GetHashCode();
             }
         }
+#endif
         private static Type[] OneTypeArray = new Type[1];
         private static Type[] TwoTypeArray = new Type[2];
-        private static Dictionary<TypePair, Type> GenericTypes = new Dictionary<TypePair, Type>();
-        private static Dictionary<MethodTypePair, MethodInfo> GenericMethods = new Dictionary<MethodTypePair, MethodInfo>();
+        private static Dictionary<ValueTuple<Type, Type>, Type> GenericTypes = new Dictionary<ValueTuple<Type, Type>, Type>();
+        private static Dictionary<ValueTuple<MethodInfo, Type>, MethodInfo> GenericMethods = new Dictionary<ValueTuple<MethodInfo, Type>, MethodInfo>();
         public static Type MakeGenericTypeFast(this Type t, Type singleType)
         {
             lock (GenericTypes)
             {
-                var k = new TypePair(t, singleType);
+                var k = ValueTuple.Create(t, singleType);
                 Type builtType;
                 if (GenericTypes.TryGetValue(k, out builtType)) return builtType;
                 OneTypeArray[0] = singleType;
@@ -93,7 +95,7 @@ namespace Shaman.Runtime
         {
             lock (GenericTypes)
             {
-                var k = new MethodTypePair(t, singleType);
+                var k = ValueTuple.Create(t, singleType);
                 MethodInfo builtMethod;
                 if (GenericMethods.TryGetValue(k, out builtMethod)) return builtMethod;
                 OneTypeArray[0] = singleType;

@@ -1,5 +1,5 @@
 {
-  "version": "1.0.0.13",
+  "version": "1.0.0.20",
   "authors": [
     "Andrea Martinelli"
   ],
@@ -10,10 +10,12 @@
     "invoke",
     "expression"
   ],
-  "compilationOptions": {
-    "keyFile": "ShamanOpenSourceKey.snk"
+  "buildOptions": {
+    "keyFile": "ShamanOpenSourceKey.snk",
+    "compile": {
+      "include": []
+    }
   },
-  "compile": [],
   "projectUrl": "http://shaman.io",
   "iconUrl": "http://shaman.io/images/shaman-nuget-icon.png",
   "description": "Creates fast, strongly typed delegates for accessing methods, fields and properties. The right overload is automatically chosen based on the type arguments of Func<> or Action<>.",
