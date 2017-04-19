@@ -383,6 +383,7 @@ namespace Shaman.Runtime.ReflectionExtensions
                     var t = stat ? typeof(Func<TReturn>) : typeof(Func<object, TReturn>);
                     if (field != null) d = (Delegate)ReflectionHelper.GetGetter(field, t);
                     else d = (Delegate)ReflectionHelper.GetWrapper(type.GetProperty(name, ReflectionHelper.AllBindingFlags).GetMethod, t);
+                    fieldGetCache[key] = d;
                 }
             }
             return stat ?
@@ -405,6 +406,7 @@ namespace Shaman.Runtime.ReflectionExtensions
                     var t = stat ? typeof(Action<TValue>) : typeof(Action<object, TValue>);
                     if (field != null) d = (Delegate)ReflectionHelper.GetSetter(field, t);
                     else d = (Delegate)ReflectionHelper.GetWrapper(type.GetProperty(name, ReflectionHelper.AllBindingFlags).SetMethod, t);
+                    fieldSetCache[key] = d;
                 }
             }
             if(stat) ((Action<TValue>)d)(value);
@@ -645,6 +647,7 @@ namespace Shaman.Runtime.ReflectionExtensions
                 if (!methodCache.TryGetValue(key, out d))
                 {
                     d = ReflectionHelper.GetWrapper(type, name, typeof(TDelegate), null, null);
+                    methodCache[key] = d;
                 }
             }
             return (TDelegate)d;
