@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <Description>Creates fast, strongly typed delegates for accessing methods, fields and properties. The right overload is automatically chosen based on the type arguments of Func&lt;&gt; or Action&lt;&gt;.</Description>
+    <VersionPrefix>1.0.0.23</VersionPrefix>
+    <Authors>Andrea Martinelli</Authors>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
+    <AssemblyName>Shaman.Reflection</AssemblyName>
+    <AssemblyOriginatorKeyFile>ShamanOpenSourceKey.snk</AssemblyOriginatorKeyFile>
+    <AssemblyVersion>1.0.0.0</AssemblyVersion>
+    <SignAssembly>true</SignAssembly>
+    <PublicSign Condition=" '$(OS)' != 'Windows_NT' ">true</PublicSign>
+    <PackageId>Shaman.Reflection</PackageId>
+    <PackageTags>reflection;optimization;performance;invoke;expression</PackageTags>
+    <PackageIconUrl>http://shaman.io/images/shaman-nuget-icon.png</PackageIconUrl>
+    <PackageProjectUrl>https://github.com/antiufo/Shaman.Reflection</PackageProjectUrl>
+  </PropertyGroup>
+  <ItemGroup />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net45' ">
+    <Reference Include="System" />
+    <Reference Include="Microsoft.CSharp" />
+  </ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
+  </ItemGroup>
+</Project>
