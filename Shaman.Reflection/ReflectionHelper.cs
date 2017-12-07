@@ -581,13 +581,13 @@ namespace Shaman.Runtime.ReflectionExtensions
             var arr = new[] { typeof(T1), typeof(T2), typeof(T3), typeof(T4), typeof(object) };
             if (IsType(obj))
             {
-                var action = GetImmediateWrapper<Func<object, T1, T2, T3, T4, object>>(obj, name, arr);
-                return action(obj, arg1, arg2, arg3, arg4);
+                var action = GetImmediateWrapper<Func<T1, T2, T3, T4, object>>(obj, name, arr);
+                return action(arg1, arg2, arg3, arg4);
             }
             else
             {
-                var action = GetImmediateWrapper<Func<T1, T2, T3, T4, object>>(obj, name, arr);
-                return action(arg1, arg2, arg3, arg4);
+                var action = GetImmediateWrapper<Func<object, T1, T2, T3, T4, object>>(obj, name, arr);
+                return action(obj, arg1, arg2, arg3, arg4);
             }
         }
         public static object InvokeFunction<T1, T2, T3, T4, T5>(this object obj, string name, T1 arg1, T2 arg2, T3 arg3, T4 arg4, T5 arg5)
